@@ -173,6 +173,7 @@ export const dictionaries = {
       terms: "Пайдалану шарттары",
     },
   },
-} as const;
+};
 
-export type Dictionary = (typeof dictionaries)["ru"];
+export type Dictionary = typeof dictionaries.ru;
+

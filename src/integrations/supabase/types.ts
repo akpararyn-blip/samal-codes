@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      codes: {
+        Row: {
+          code_string: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          code_string: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          code_string?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      otp_codes: {
+        Row: {
+          code: string
+          created_at: string
+          expires_at: string
+          phone: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          expires_at: string
+          phone: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          expires_at?: string
+          phone?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

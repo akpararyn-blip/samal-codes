@@ -18,14 +18,19 @@ export function Countdown({ expiresAt, format = "mmss", onExpire }: Props) {
     return () => clearInterval(id);
   }, []);
 
-  if (!expiresAt) return <span>--:--</span>;
-  const target = typeof expiresAt === "number" ? expiresAt : new Date(expiresAt).getTime();
+  const target =
+    expiresAt == null
+      ? 0
+      : typeof expiresAt === "number"
+        ? expiresAt
+        : new Date(expiresAt).getTime();
   const diff = Math.max(0, Math.floor((target - now) / 1000));
 
   useEffect(() => {
-    if (diff === 0 && onExpire) onExpire();
-  }, [diff, onExpire]);
+    if (diff === 0 && expiresAt != null && onExpire) onExpire();
+  }, [diff, expiresAt, onExpire]);
 
+  if (!expiresAt) return <span>--:--</span>;
   const h = Math.floor(diff / 3600);
   const m = Math.floor((diff % 3600) / 60);
   const s = diff % 60;
